@@ -1,19 +1,14 @@
+dist: trusty
 language: go
 
 go:
-    - tip
-    - 1.5
-    - 1.4
+    - 1.6
 
-services:
-    - redis-server
-
-env:
-    - TEST_REDIS_ADDRESSES=localhost:6379
+install:
+    - go get ./...
 
 before_script:
-    - sh -c "sleep 5"  # give Redis a(n additional) chance to start
+    - cd roshi-server
 
 script:
-    - go test -v ./...
-
+    - make
